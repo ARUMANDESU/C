@@ -36,4 +36,4 @@ if (i) {
 ```
 if i is 0 then condition is false
 if i is not 0 then condition is true
-=> The value `0` represents logical false, and any value different from `0` represents logical true 
+=> The value `0` represents logical `false`, and any value different from `0` represents logical `true`.
