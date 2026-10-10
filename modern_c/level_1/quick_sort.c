@@ -6,45 +6,28 @@ void swap(int arr[], int i, int j) {
     arr[j] = tmp;
 }
 
-void print_arr_li_hi(int arr[], int lo, int hi) {
-    for (; lo < hi; lo++) {
-        printf("%d%s", arr[lo], lo + 1 < hi ? ", " : "\n");
-    }
-}
-
 void quick_sort(int arr[], int lo, int hi) {
     if (hi - lo < 2)
         return;
 
     int pivot = lo + (hi - lo) / 2;
-    printf("pivot: %d(%d); lo: %d, hi: %d\n", pivot, arr[pivot], lo, hi);
     swap(arr, pivot, hi - 1);
     pivot = hi - 1;
 
     int i = lo, j = hi - 2;
 
     while (i <= j) {
-        print_arr_li_hi(arr, lo, hi);
-        printf("i: %d(%d); j: %d(%d)\n", i, arr[i], j, arr[j]);
         if (arr[i] < arr[pivot]) {
-            printf("next i\n");
             i++;
         } else if (arr[j] >= arr[pivot]) {
-            printf("next j\n");
             j--;
         } else {
-            printf("swap\n");
             swap(arr, i, j);
         }
-        print_arr_li_hi(arr, lo, hi);
-        printf("i: %d(%d); j: %d(%d)\n", i, arr[i], j, arr[j]);
-        printf("\n");
     }
 
     swap(arr, pivot, i);
     pivot = i;
-    printf("pivot: %d(%d)\n", pivot, arr[pivot]);
-    printf("\n");
 
     quick_sort(arr, lo, pivot);
     quick_sort(arr, pivot + 1, hi);
