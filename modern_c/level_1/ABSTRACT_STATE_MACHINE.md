@@ -16,7 +16,7 @@ In order to fully understand what this means, we should first get introduced to 
 ## State
 What is the state?
 At any moment while our program runs, it's in a state. Think of it like a snapshot of a program.
-Statements move(change) the state of the program.
+Statements move(change) the state of the program. More precisely, statements drive execution, and the side effects of their expressions change the data.
 ```c
 int a = 1;      // state: a = 1
 a = a + 2;      // state: a = 3
@@ -28,6 +28,11 @@ The state of program execution is determined by:
 - The current point of execution
 - The data
 - Outside intervention, such as the IO from the user
+
+### Expressions & Statements
+Statements are the steps of the machine. Each one moves the point of execution forward and decides where to go next. if and while are literally choosing the next transition.
+Expressions compute values. Their intermediate results, like 7.5 in the book’s example, are usually not observable, which is why the compiler can fold them away.
+Side effects are what actually change the data part of the state: assignments, `++`, output. The `;` at the end of an expression statement marks the point where those side effects must be complete before the next step begins.
 
 ## Observable state
 Not all state counts as an observable: the output, plus the variables whose values are actually used later. In standard-C terms, they are I/O, data written to files, and volatile accesses. Everything else is free for the compiler to change.
